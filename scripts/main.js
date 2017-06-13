@@ -8,35 +8,45 @@
    you'll need to parse through that first before you can start to
    write your logic.
 */
-let cardsArray = ["king", "king", "king", "king","queen", "queen", "queen", "queen", "jack",
-              "jack", "jack", "jack", "ace", "ace", "ace", "ace", "two", "two", "two","two",
-              "three", "three", "three", "three", "four", "four", "four", "four",
-              "five", "five", "five", "five", "six", "six", "six", "six",
-              "seven", "seven", "seven", "seven", "eight", "eight", "eight", "eight",
-              "nine", "nine", "nine", "nine", "ten", "ten", "ten", "ten"]
-cards {
-  king: 10,
-  queen: 10,
-  jack: 10,
-  ace: 11,
-  two: 2,
-  three: 3,
-  four: 4,
-  five: 5,
-  six: 6,
-  seven: 7,
-  eight: 8,
-  nine: 9,
-  ten: 10
+function handValue (hand)
+{
+  let value = 0;
+  let blackjack = 21;
+
+  for (let i = 0; i < hand.length; i++)
+  {
+    if(hand[i] === "2" || hand[i] === "3" || hand[i] === "4" || hand[i] === "5" || hand[i] === "6" || hand[i] === "7" || hand[i] === "8" || hand[i] === "9" || hand[i] === "10")
+    {
+         let cardVal = hand[i]
+         value = value + parseInt(cardVal);
+    }
+    else if(hand[i] === "K" || hand[i] === "Q" ||hand[i] === "J")
+    {
+      let placeHolderValue = 10;
+      value = value + placeHolderValue;
+    }
+    else if (hand[i] === "A")
+    {
+      let option1 = 1;
+      let option2 = 11;
+
+      if((value + option2) > blackjack)
+      {
+        value = value + option1;
+      }
+      else
+      {
+        value = value + option2;
+      }
+    }
+  }
+  if(value > blackjack)
+  {
+    value = value - 10;
+  }
+  console.log(value);
+  return value;
 }
-
-
-function handValue (hand) {
-
-
-  return;
-}
-
 
 /* -----  Hints ------
 
